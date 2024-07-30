@@ -31,7 +31,7 @@
       }   
       .inactive {
         background-color: #666 !important;
-        color: #777 !important;
+        color: #ddd !important;
       }
       td.failed {
         font-weight: bold;
@@ -146,7 +146,7 @@
     </h1>
 
     <div class="row">
-      <div class="box inactive">
+      <div class="box <% if(http_and_grpc_req_count > 0) { %> inactive <% } %>">
         <i class="fas fa-globe icon"></i>
         <h4>Total Requests</h4>
         <div class="bignum"><%= http_and_grpc_req_count %></div>
@@ -158,12 +158,12 @@
           <div class="bignum"><%= data.metrics.http_req_failed.values.passes %></div>
         </div> 
       <% } %>     
-      <div class="box <% if(thresholdFailures > 0) { %> failed <% } %>">
+      <div class="box <% if(thresholdFailures > 0) { %> inactive <% } %>">
         <i class="fas fa-chart-bar icon"></i>
         <h4>Breached Thresholds</h4>
         <div class="bignum"><%= thresholdFailures %></div>
       </div>
-      <div class="box <% if(checkFailures > 0) { %> failed <% } %>">
+      <div class="box <% if(checkFailures> 0) { %> inactive <% } %>">
         <i class="fas fa-eye icon"></i>
         <h4>Failed Checks</h4>
         <div class="bignum"><%= checkFailures %></div>
@@ -381,32 +381,26 @@
         </div>
         
         <div class="row">
-          <% if (data.metrics.http_reqs) { %>
-          <div class="box metricbox">
+          <div class="box metricbox <% if(data.metrics.http_reqs > 0) { %> inactive <% } %>">
             <h4>Requests</h4>
             <i class="fas fa-globe icon"></i>
             <div class="row"><div>Total</div><div><%= data.metrics.http_reqs ? data.metrics.http_reqs.values.count : 0 %></div></div>
             <div class="row"><div>Rate</div><div><%= data.metrics.http_reqs ? data.metrics.http_reqs.values.rate.toFixed(2) : 0 %> /s</div></div>
           </div>
-          <% } %>
 
-          <% if (data.metrics.data_received) { %>
-          <div class="box metricbox">
+          <div class="box metricbox <% if(data.metrics.data_received.values.count > 0) { %> inactive <% } %>">
             <h4>Data Received</h4>
             <i class="fas fa-cloud-download-alt icon"></i>
             <div class="row"><div>Total</div><div><%= (data.metrics.data_received.values.count/1000000).toFixed(2) %> MB</div></div>
             <div class="row"><div>Rate</div><div><%= (data.metrics.data_received.values.rate/1000000).toFixed(2) %> mB/s</div></div>
           </div>
-          <% } %>
 
-          <% if (data.metrics.data_sent) { %>
-          <div class="box metricbox">
+          <div class="box metricbox <% if(data.metrics.data_sent.values.count > 0) { %> inactive <% } %>">
             <h4>Data Sent</h4>
             <i class="fas fa-cloud-upload-alt icon"></i>
             <div class="row"><div>Total</div><div><%= (data.metrics.data_sent.values.count/1000000).toFixed(2) %> MB</div></div>
             <div class="row"><div>Rate</div><div><%= (data.metrics.data_sent.values.rate/1000000).toFixed(2) %> mB/s</div></div>
           </div>  
-          <% } %>
 
         </div>
       </div>  
