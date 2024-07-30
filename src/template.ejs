@@ -145,8 +145,7 @@
       <div class="box">
         <i class="fas fa-globe icon"></i>
         <h4>Total Requests</h4>
-        <div class="bignum"><% if(data.metrics.http_reqs) { %><%= data.metrics.http_reqs.values.count %><% } %></div>
-        <div class="bignum"><% if(data.metrics.grpc_reqs) { %><%= data.metrics.grpc_reqs.values.count %><% } %></div>
+        <div class="bignum"><%= http_and_grpc_req_count %></div>
       </div>
       <% if(data.metrics.http_req_failed && data.metrics.http_req_failed.values) { %>
         <div class="box <% if(data.metrics.http_req_failed.values.passes > 0) { %> failed <% } %>">
@@ -381,8 +380,8 @@
           <div class="box metricbox">
             <h4>Requests</h4>
             <i class="fas fa-globe icon"></i>
-            <div class="row"><div>Total</div><div><% if(data.metrics.http_reqs) { %><%= data.metrics.http_reqs.values.count %><% } %></div></div>
-            <div class="row"><div>Rate</div><div><% if(data.metrics.http_reqs) { %><%= data.metrics.http_reqs.values.rate.toFixed(2) %>/s<% } %></div></div>
+            <div class="row"><div>Total</div><div><%= data.metrics.http_reqs ? data.metrics.http_reqs.values.count : 0 %></div></div>
+            <div class="row"><div>Rate</div><div><%= data.metrics.http_reqs ? data.metrics.http_reqs.values.rate.toFixed(2) : 0 %> /s</div></div>
           </div>
 
           <div class="box metricbox">
