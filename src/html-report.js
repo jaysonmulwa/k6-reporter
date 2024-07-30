@@ -99,7 +99,6 @@ export function htmlReport(data, opts = {}) {
     'vus',
     'http_req_failed',
     'http_req_duration{expected_response:true}',
-    'http_and_grpc_req_count',
   ]
 
   // Render the template
@@ -113,6 +112,7 @@ export function htmlReport(data, opts = {}) {
     checkFailures,
     checkPasses,
     version,
+    http_and_grpc_req_count,
   })
 
   // Return HTML string needs wrapping in a handleSummary result object
