@@ -30,7 +30,7 @@
         background-color: #3abe3a !important;
       }   
       .inactive {
-        background-color: #666 !important;
+        background-color: #777 !important;
         color: #ddd !important;
       }
       td.failed {
@@ -381,7 +381,7 @@
         </div>
         
         <div class="row">
-          <div class="box metricbox <% if(data.metrics.http_reqs <= 0) { %> inactive <% } %>">
+          <div class="box metricbox <% if(!data.metrics.http_reqs) { %> inactive <% } %>">
             <h4>Requests</h4>
             <i class="fas fa-globe icon"></i>
             <div class="row"><div>Total</div><div><%= data.metrics.http_reqs ? data.metrics.http_reqs.values.count : 0 %></div></div>
@@ -447,6 +447,6 @@
       </div> 
       <!-- ---- end tab ---- -->
     </div>
-    <footer>K6 Reporter v<%= version %> - Ben Coleman 2021, <a href="https://github.com/benc-uk/k6-reporter">[GitHub]</a></footer>
+    <footer>K6 Reporter v<%= version %> <a href="https://github.com/jaysonmulwa/k6-reporter">[GitHub]</a></footer>
   </body>
 </html>
