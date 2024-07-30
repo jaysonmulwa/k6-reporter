@@ -63,7 +63,7 @@ export function htmlReport(data, opts = {}) {
     }
   }
 
-  //http_req_count, grpc_req_count
+  // http_req_count, grpc_req_count
   let http_and_grpc_req_count = 0
   if (data.metrics.grpc_reqs) {
     http_and_grpc_req_count += data.metrics.grpc_reqs.values.count
