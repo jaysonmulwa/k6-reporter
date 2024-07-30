@@ -146,7 +146,7 @@
     </h1>
 
     <div class="row">
-      <div class="box <% if(http_and_grpc_req_count > 0) { %> inactive <% } %>">
+      <div class="box <% if(http_and_grpc_req_count <= 0) { %> inactive <% } %>">
         <i class="fas fa-globe icon"></i>
         <h4>Total Requests</h4>
         <div class="bignum"><%= http_and_grpc_req_count %></div>
@@ -158,12 +158,12 @@
           <div class="bignum"><%= data.metrics.http_req_failed.values.passes %></div>
         </div> 
       <% } %>     
-      <div class="box <% if(thresholdFailures > 0) { %> inactive <% } %>">
+      <div class="box <% if(thresholdFailures <= 0) { %> inactive <% } %>">
         <i class="fas fa-chart-bar icon"></i>
         <h4>Breached Thresholds</h4>
         <div class="bignum"><%= thresholdFailures %></div>
       </div>
-      <div class="box <% if(checkFailures> 0) { %> inactive <% } %>">
+      <div class="box <% if(checkFailures <= 0) { %> inactive <% } %>">
         <i class="fas fa-eye icon"></i>
         <h4>Failed Checks</h4>
         <div class="bignum"><%= checkFailures %></div>
