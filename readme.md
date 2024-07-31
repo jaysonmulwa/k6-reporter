@@ -1,3 +1,5 @@
+* disclaimer - this has been modded to my preferences and may not reflect what was in the original library by benc.
+
 # K6 HTML Report Exporter v2
 
 ### 🔥 Note.
