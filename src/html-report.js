@@ -63,6 +63,15 @@ export function htmlReport(data, opts = {}) {
     }
   }
 
+  // http_req_count, grpc_req_count
+  let http_and_grpc_req_count = 0
+  if (data.metrics.grpc_reqs) {
+    http_and_grpc_req_count += data.metrics.grpc_reqs.values.count
+  }
+  if (data.metrics.http_reqs) {
+    http_and_grpc_req_count += data.metrics.http_reqs.values.count
+  }
+
   const standardMetrics = [
     'grpc_req_duration',
     'http_req_duration',
@@ -103,6 +112,7 @@ export function htmlReport(data, opts = {}) {
     checkFailures,
     checkPasses,
     version,
+    http_and_grpc_req_count,
   })
 
   // Return HTML string needs wrapping in a handleSummary result object
